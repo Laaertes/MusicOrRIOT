@@ -21,3 +21,39 @@ a {
 a:hover{
     color: inherit;
 }
+
+.jumbotron{
+  background-color: #5a5a5a;
+}
+
+.jumbotron h1{
+  color: #fff;
+  text-align: center;
+}
+
+.buttons h3{
+  color:#E3F15E;
+  font-family: 'Shift', sans-serif;
+  background: #5a5a5a;
+}
+
+.create-party{
+}
+
+.find-party{
+}
+
+.btn-primary{
+  background-color: #5a5a5a;
+  border-color: #5a5a5a;
+}
+
+.btn-primary:hover{
+  background-color: #E3F15E;
+  border-color: #5a5a5a;
+}
+
+.centered{
+  text-align: center;
+}
+
