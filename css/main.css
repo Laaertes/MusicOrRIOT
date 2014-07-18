@@ -1,27 +1,3 @@
-@font-face {
-    font-family: 'brandFont';
-    src: url('file:fonts/deftone_stylus.ttf');
-}
-
-.navbar-styles{
-    border: 2px outset #BE81F7;
-}
-.brand-color{
-    color: #000000;
-    font: brandFont;
-}
-.background-container{
-    background-color: #BCA9F5;
-}
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-a:hover{
-    color: inherit;
-}
-
 .jumbotron{
   background-color: #5a5a5a;
 }
