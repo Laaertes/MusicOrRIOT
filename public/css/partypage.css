@@ -7,8 +7,10 @@ body {
 	font-family: arial;
 }
 
-.search {
-
+.searchBOX {
+	margin: 1% 0% 0% 0%;
+	height: 30px;
+	width: 100px;
 }
 
 .searchbar {
@@ -20,7 +22,7 @@ body {
 	background: #a80000;
 	color: #ffff00;
 	padding: .5%;
-	margin: 1%;
+	margin: 1% 50% 1% 1%;
 	border-radius: 10px;
 }
 
@@ -29,5 +31,6 @@ a {
 }
 
 .queue {
-	margin: 0% 0% 0% 0%;
+	
+	color: black;
 }
