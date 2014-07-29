@@ -3,5 +3,5 @@
  */
 function myFunction()
 {
-    $("#content").load("templates/partypage.html");
+    $("#content").load("../templates/partypage.html");
 }
