@@ -6,12 +6,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <title>Music Melee</title>
+    <title>LoudSource</title>
 </head>
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>Music Melee</h1>
+            <h1><a href="index.html">LoudSource</a></h1>
         </div>
     </div>
     <div id ="content">
@@ -21,13 +21,14 @@
                     <div class="col-md-6">
                         <div class="create-party">
                             <div class="centered">
-                                <a href="#" class="btn btn-primary btn-lg" role="button">Create Party</a>
+                              <a class="btn btn-primary btn-lg" role="button" onclick="goToCreate()">Create Party</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="find-party">
                             <div class="centered">
+                               <div class="search-bar"><input type="text" class="form-control" placeholder="Party Name"></div>
                                 <a class="btn btn-primary btn-lg" role="button" onclick="myFunction()">Find Party</a>
                             </div>
                         </div>
@@ -35,6 +36,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="centered">
+      <footer>Contact Us: LoudSource@gmail.com</footer>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
