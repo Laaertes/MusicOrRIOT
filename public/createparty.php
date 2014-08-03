@@ -12,46 +12,29 @@
         }
         
         // check of party name already exists
-        $result = query("SELECT * FROM Party WHERE PartyName = ?", $_POST["party"]);
+        $result = query("SELECT * FROM Party WHERE name = ?", $_POST["party"]);
         if ($result)
         {
             apologize("That party already exists. I guess you weren't invited");
         }
         else
         {
-            // we finally filled out the form right, add the user
-            $check = query("INSERT INTO Party (PartyName, IPAddress) VALUES(?, ?)", $_POST["party"], crypt($_POST["cookies"]));
+            // we finally filled out the form right, add party to database
+            $check = insert_or_update("INSERT INTO Party (name, admin) VALUES(?, ?)", $_POST["party"], $user["id"]);
             
             // just in case it went wrong
-            if ($check === false)
+            if ($check === false || $check === 0)
             {
                 apologize("Please try again");
             }
             
-            /*// if everything went right
-            $rows = query("SELECT LAST_INSERT_ID() AS id");
-            $id = $rows[0]["id"];
-            // remember that user's now logged in by storing user's ID in session
-            $_SESSION["id"] = $id;
-            */
+            // add user to party
+            insert_or_update("UPDATE User SET party_id=? WHERE session_identifier=?", get_handle()->lastInsertId(), $user['session_identifier']);
             
             // redirect to queue
             redirect("/partypage.php");
         }
-        
-        // if invalid stock symbol
-       /* if ($stock === false)
-        {
-            apologize("You must provide a valid stock symbol");
-        }
-        else
-        {   
-            // direct to party queue
-            render("partypage.php", ["title" => "Party Page", 'symbol' => $stock['symbol'], 'name' => $stock['name'], 'price' => $price]);
-        }*/
-    }
-    else
-    {
+    } else {
         render("create_form.php", ["title" => "Create Party"]);
     }
 ?>

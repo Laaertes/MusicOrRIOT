@@ -1,14 +1,5 @@
 <?php
 
-/**
- * config.php
- *
- * Computer Science 50
- * Problem Set 7
- *
- * Configures pages.
- */
-
 // display errors, warnings, and notices
 ini_set("display_errors", true);
 error_reporting(E_ALL);
@@ -20,16 +11,15 @@ require("functions.php");
 // enable sessions
 session_start();
 
-/*
-*
-*We need this at the end
-// require authentication for most pages
-if (!preg_match("{(?:landing)\.php$}", $_SERVER["PHP_SELF"]))
-{
-    if (empty($_COOKIE["id"]))
-    {
-        redirect("index.php");
-    }
-}*/
+if (empty($_COOKIE['session_identifier'])) {
+    srand(time());
+    $random_number = rand();
+    $session_identifier = sha1($random_number);
+    insert_or_update("INSERT INTO User (session_identifier) VALUES (?)", $session_identifier);
+    setcookie('session_identifier', $session_identifier, time()+60*60*24*30);
+    $user = query("SELECT * FROM User WHERE session_identifier = ?", $session_identifier);
+} else {
+    $user = query("SELECT * FROM User WHERE session_identifier = ?", $_COOKIE['session_identifier']);
+}
 
 ?>

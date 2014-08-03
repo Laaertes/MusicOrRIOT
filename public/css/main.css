@@ -1,3 +1,24 @@
+html, body{
+  height: 100%;
+}
+
+footer{
+  background-color: #5a5a5a;
+  color: #fff;
+  height: 30px;
+}
+
+body{
+  background: #999;
+}
+
+#content{
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -30px;
+}
+
 .jumbotron{
   background-color: #5a5a5a;
   padding: 30px;
@@ -45,25 +66,9 @@
   margin-bottom: 25px;
 }
 
-html, body{
-  height: 100%;
-}
-
-footer{
-  background-color: #5a5a5a;
-  color: #fff;
-  height: 30px;
-}
-
-body{
-  background: #999;
-}
-
-#content{
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -30px;
+.create-party-form {
+  width: 250px;
+  margin: 0 auto;
 }
 
 
