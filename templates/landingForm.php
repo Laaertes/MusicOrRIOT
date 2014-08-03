@@ -1,24 +1,20 @@
 <!DOCTYPE html>
     <div id ="content">
-        <div>
-            <?php
-                print"<b> $Id </b> $IPAddress <br/> $PartyName <br/>"
-            ?>
-        </div>
         <div class="buttons">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="create-party">
                             <div class="centered">
-                                <a href="#" class="btn btn-primary btn-lg" role="button">Create Party</a>
+                                <a class="btn btn-primary btn-lg" role="button" href="createparty.php">Create Party</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="find-party">
                             <div class="centered">
-                                <a class="btn btn-primary btn-lg" role="button" onclick="myFunction()">Find Party</a>
+                                <div class="search-bar"><input type="text" class="form-control" placeholder="Party Name"></div>
+                                <a class="btn btn-primary btn-lg" role="button" href="partypage.php">Find Party</a>
                             </div>
                         </div>
                     </div>

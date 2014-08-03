@@ -20,13 +20,16 @@ require("functions.php");
 // enable sessions
 session_start();
 
+/*
+*
+*We need this at the end
 // require authentication for most pages
 if (!preg_match("{(?:landing)\.php$}", $_SERVER["PHP_SELF"]))
 {
-    if (empty($_SESSION["id"]))
+    if (empty($_COOKIE["id"]))
     {
-        redirect("landing.php");
+        redirect("index.php");
     }
-}
+}*/
 
 ?>
