@@ -1,13 +1,13 @@
 /**
  * Created by williamandrade on 7/16/14.
  */
-function myFunction()
+function goToParty()
 {
-    $("#content").load("../templates/partypage.html");
+    $("#content").load("/partypage.php");
 }
 
 function goToCreate()
 {
-    $("#content").load("templates/create_party.html");
+    $("#content").load("../templates/create_form.php");
 }
 

@@ -5,11 +5,11 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <title>Music Melee</title>
+    <title>LoudSource</title>
 </head>
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>Music Melee</h1>
+            <h1>LoudSource</h1>
         </div>
     </div>
