@@ -8,6 +8,6 @@ function myFunction()
 
 function goToCreate()
 {
-    $("#content").load("templates/create_party.html");
+    $("#content").load("../templates/create_party.html");
 }
 
