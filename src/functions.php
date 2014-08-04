@@ -140,7 +140,7 @@ function query(/* $sql [, ... ] */)
     }
 }
 
-function queryAll(/* $sql [, ... ] */)
+function query_all(/* $sql [, ... ] */)
 {
     // SQL statement
     $args = func_get_args();

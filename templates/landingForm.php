@@ -13,8 +13,16 @@
                     <div class="col-md-6">
                         <div class="find-party">
                             <div class="centered">
-                                <div class="search-bar"><input type="text" class="form-control" placeholder="Party Name"></div>
-                                <a class="btn btn-primary btn-lg" role="button" href="partypage.php">Find Party</a>
+                                <form action="findparty.php" method="post">
+                                    <fieldset>
+                                        <div class="form-group search-bar">
+                                            <input autofocus class="form-control" name="party" placeholder="Party Name" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-lg">Find Party</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
                             </div>
                         </div>
                     </div>
