@@ -1,10 +1,37 @@
+html, body{
+  height: 100%;
+}
+
+footer{
+  background-color: #5a5a5a;
+  color: #fff;
+  height: 30px;
+}
+
+body{
+  background: #999;
+}
+
+#content{
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -30px;
+}
+
 .jumbotron{
   background-color: #5a5a5a;
+  padding: 30px;
 }
 
 .jumbotron h1{
   color: #fff;
   text-align: center;
+  font-size: 50px;
+}
+
+.jumbotron a{
+  color: #fff;
 }
 
 .buttons h3{
@@ -14,6 +41,7 @@
 }
 
 .create-party{
+  margin-top: 109px;
 }
 
 .find-party{
@@ -32,4 +60,16 @@
 .centered{
   text-align: center;
 }
+
+.search-bar{
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.create-party-form {
+  width: 250px;
+  margin: 0 auto;
+}
+
+
 

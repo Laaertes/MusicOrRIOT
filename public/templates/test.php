@@ -1,8 +1,0 @@
-<?PHP
-
-<body>
-TESETETSETSET
-</body>
-
-
-?>
