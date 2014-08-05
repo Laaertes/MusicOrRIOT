@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -6,7 +5,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <title>Create Party</title>
+    <title>LoudSource</title>
 </head>
 <body>
     <div class="jumbotron">
@@ -14,13 +13,3 @@
             <h1>LoudSource</h1>
         </div>
     </div>
-    <div class="container">
-		<div class="centered"
-			<form>
-			<input type="text" placeholder="Party Name" />
-			<input type="submit" class="btn btn-primary btn-sm"/>
-			</form>
-		</div>
-	</div>
-</body>
-</html>
