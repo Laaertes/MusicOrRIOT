@@ -1,13 +1,7 @@
 /**
  * Created by williamandrade on 7/16/14.
  */
-function goToParty()
+function myFunction()
 {
-    $("#content").load("/partypage.php");
+    $("#content").load("templates/partypage.html");
 }
-
-function goToCreate()
-{
-    $("#content").load("../templates/create_form.php");
-}
-

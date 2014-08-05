@@ -18,12 +18,10 @@
 				var textBox1 = document.getElementById("searchbox1").value;
 				alert("Searching for " + textBox1)
 			    var spotifyApi = new SpotifyWebApi();
-			    spotifyApi.searchArtists('pink').then(function(data) 
-			    	{
+			    spotifyApi.searchArtists('pink')
+			        .then(function(data) {
 			        	alert(data);
-			        }, 
-			        function(err) 
-			        {
+			        }, function(err) {
 			            alert(err);
 			        });
 			}
