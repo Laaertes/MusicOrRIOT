@@ -6,9 +6,11 @@
                     <input autofocus class="form-control" name="party" placeholder="Party Name" type="text"/>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">Create</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Create</button>
                 </div>
             </fieldset>
         </form>
     </div>
 </div>
+
+
