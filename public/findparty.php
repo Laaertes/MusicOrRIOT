@@ -15,6 +15,7 @@
         $result = query("SELECT * FROM Party WHERE name = ?", $_POST["party"]);
         if ($result)
         {
+	    insert_or_update("UPDATE User SET party_id=? WHERE session_identifier=?", $result['id'], $user['session_identifier']);
             // redirect to queue
             redirect("/partypage.php");
         }
