@@ -10,13 +10,22 @@
 		                        <strong><?= $party["name"] ?></strong>
 		                    </h1>
 		                    <br>
-		                    <div class="search" align="center">
-		                        <p>
-		                            <input type="text" value="" id="searchbox1">
-		                            <button class="searchBOX" value="Search" name="Search" onclick="searchMe()">Search</button>
-		                        </p>	
-		                    </div>
-		
+		                    <form onsubmit="searchMe()" method="post">
+		                    	<fieldset>
+				                    <div class="form-group search-bar" align="center">
+				                        <div>
+				                            <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1">
+				                        </div>	
+				                        <br>
+				                        <div>
+				                        	<button type="submit" class="btn btn-primary btn-md">Search</button>
+				                        </div>	
+				                    </div>
+				                </fieldset>
+		                    </form>
+		                    
+		                    <p id="displayResult"></p>
+		                    
 		                    <br>
 		                    <p class="queue" align="center">
 		                        <strong>Queue</strong>

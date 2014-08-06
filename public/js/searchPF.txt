@@ -1,0 +1,44 @@
+{
+ "status": "ok", 
+ "result": {
+  "results": [
+   {
+    "key": "t37365830", 
+    "baseIcon": "album/9/a/5/00000000003595a9/1/square-200.jpg", 
+    "canDownloadAlbumOnly": false, 
+    "radio": {
+     "type": "sr", 
+     "key": "sr37365830"
+    }, 
+    "artistUrl": "/artist/Pink_Floyd/", 
+    "duration": 413, 
+    "album": "The Dark Side Of The Moon (2011 - Remaster)", 
+    "isClean": false, 
+    "albumUrl": "/artist/Pink_Floyd/album/The_Dark_Side_Of_The_Moon_(2011_-_Remaster)_2/", 
+    "shortUrl": "http://rd.io/x/QitAZWsZ/", 
+    "albumArtist": "Pink Floyd", 
+    "canStream": true, 
+    "embedUrl": "https://rd.io/e/QitAZWsZ/", 
+    "type": "t", 
+    "gridIcon": "http://rdiodynimages1-a.akamaihd.net/?l=a3511721-1%3Bboxblur%2810%25%2C10%25%29%3Bprimary%280.65%29%3Boverlay%28overlays/shadow%29%3Ba3511721-1%3Bpad%2850%25%29%3B%243%3Aoverlay%28%245%29", 
+    "price": "None", 
+    "trackNum": 4, 
+    "albumArtistKey": "r232671", 
+    "radioKey": "sr37365830", 
+    "icon": "http://rdio1img-a.akamaihd.net/album/9/a/5/00000000003595a9/1/square-200.jpg", 
+    "canSample": true, 
+    "name": "Time", 
+    "isExplicit": false, 
+    "artist": "Pink Floyd", 
+    "url": "/artist/Pink_Floyd/album/The_Dark_Side_Of_The_Moon_(2011_-_Remaster)_2/track/Time/", 
+    "icon400": "http://rdio3img-a.akamaihd.net/album/9/a/5/00000000003595a9/1/square-400.jpg", 
+    "artistKey": "r232671", 
+    "canDownload": false, 
+    "length": 1, 
+    "canTether": true, 
+    "albumKey": "a3511721"
+   }
+  ], 
+  "number_results": 232
+ }
+}
