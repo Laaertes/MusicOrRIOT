@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<body>
+	<body onload="loaded()">
 		<div id ="content">
 		    <div class="buttons">
 		        <div class="container">
@@ -10,6 +10,11 @@
 		                        <strong><?= $party["name"] ?></strong>
 		                    </h1>
 		                    <br>
+
+                            <button id="player" class="play" onclick="play()">Play!</button>
+
+                            <br>
+
                             <div class="form-group search-bar" align="center">
                                 <div>
                                     <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1">
@@ -29,7 +34,7 @@
 		                    <br>
 		
 		                    <div>
-		                        <ol class="list">
+		                        <ol id="queueList" class="list">
 		                            <strong>
 		                            <?php foreach ($songs_by_score_desc as $song): ?>
 		                                <li>

@@ -3,10 +3,12 @@ function searchMe() {
 	//alert("Searching for: "+"\""+searchTerm+"\"");
     //insert API call here
     var spotifyApi = new SpotifyWebApi();
-        spotifyApi.searchTracks('BackinBlack')
+        spotifyApi.searchTracks(searchTerm)
             .then(function(data) {
                     console.log('Found: ', data);
-                    //Sort through the data with a function call here
+                    //Sort through and display the data with a function call here
+                    //yourfunction();
+                    playSong(data.tracks.items[0].preview_url);
                 }, function(err) {
                     //Handle an API search error
                     console.error(err);
@@ -70,4 +72,64 @@ function readTextFile()
 	
 	
 	alert("Finish");
+}
+//Prepares the audioObject to play the a song
+var audioObject;
+function playSong(url){
+    audioObject = new Audio(url);
+    var that = audioObject;
+    audioObject.addEventListener('ended', function() {
+        var queueList = document.getElementById("queueList");
+        if (queueList.hasChildNodes()){
+            var next = queueList.firstChild.preview_url;
+            that.src = ("https://p.scdn.co/mp3-preview/6c43a340ad55f6961354bfa3b24499058dff1cb6");
+            that.load();
+            that.play();
+        }
+    });
+    audioObject.addEventListener('pause', function() {
+        //target.classList.remove(playingCssClass);
+    });
+}
+
+var playing = false;
+function play(data){
+    var player = document.getElementById("player");
+    if(!playing){
+        audioObject.play();
+        player.textContent = "Pause!";
+        playing = true;
+    }
+    else {
+        player.textContent = "Play!";
+        playing = false;
+        audioObject.pause();
+    }
+}
+//start playing on page load?
+function loaded() {
+    var queueList = document.getElementById("queueList");
+    if (queueList.hasChildNodes()){
+        playSong("https://p.scdn.co/mp3-preview/856be864790a7e2136743a8ac5c368478fcbcac0");
+        play();
+    }
+    else {
+        console.log("AH!");
+    }
+}
+
+//add song to database on click
+function sendToDatabase(name, url){
+    if (url=="" || name=="") {
+        console.log("Error in element values");
+        return;
+    }
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+        }
+    };
+    xmlhttp.open("Post","newSong.php?q="+str,true);
+    xmlhttp.send();
 }
