@@ -2,7 +2,15 @@ function searchMe() {
 	var searchTerm = document.getElementById("searchbox1").value;
 	//alert("Searching for: "+"\""+searchTerm+"\"");
     //insert API call here
-	
+    var spotifyApi = new SpotifyWebApi();
+        spotifyApi.searchTracks('BackinBlack')
+            .then(function(data) {
+                    console.log('Found: ', data);
+                    //Sort through the data with a function call here
+                }, function(err) {
+                    //Handle an API search error
+                    console.error(err);
+                });
 	//test code for now
 	readTextFile();
 }

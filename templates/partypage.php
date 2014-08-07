@@ -10,19 +10,15 @@
 		                        <strong><?= $party["name"] ?></strong>
 		                    </h1>
 		                    <br>
-		                    <form onsubmit="searchMe()" method="post">
-		                    	<fieldset>
-				                    <div class="form-group search-bar" align="center">
-				                        <div>
-				                            <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1">
-				                        </div>	
-				                        <br>
-				                        <div>
-				                        	<button type="submit" class="btn btn-primary btn-md">Search</button>
-				                        </div>	
-				                    </div>
-				                </fieldset>
-		                    </form>
+                            <div class="form-group search-bar" align="center">
+                                <div>
+                                    <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1">
+                                </div>
+                                <br>
+                                <div>
+                                    <button onclick="searchMe()" class="btn btn-primary btn-md">Search</button>
+                                </div>
+                            </div>
 		                    
 		                    <p id="displayResult"></p>
 		                    
