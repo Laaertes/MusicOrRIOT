@@ -1,3 +1,4 @@
+//search the api for the correct track
 function searchMe() {
 	var searchTerm = document.getElementById("searchbox1").value;
 	//alert("Searching for: "+"\""+searchTerm+"\"");
@@ -7,7 +8,7 @@ function searchMe() {
             .then(function(data) {
                     console.log('Found: ', data);
                     //Sort through and display the data with a function call here
-                    //yourfunction();
+                    //yourfunction(data);
                     playSong(data.tracks.items[0].preview_url);
                 }, function(err) {
                     //Handle an API search error
@@ -124,12 +125,58 @@ function sendToDatabase(name, url){
         console.log("Error in element values");
         return;
     }
-    xmlhttp=new XMLHttpRequest();
+    var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-            document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+            var data = JSON.parse(xmlhttp.responseText);
+            console.log(data);
+            if(data === "Song Exists" || data === "There was an error adding your file to the server"){
+                console.log("Error Occurred");
+            }
+            else{
+                refreshQueue(data);
+            }
         }
     };
-    xmlhttp.open("Post","newSong.php?q="+str,true);
+    name = "name";
+    url = "https://p.scdn.co/mp3-preview/856be864790a7e2136743a8ac5c368478fcbcac0";
+    xmlhttp.open("GET","uploadsong.php?name="+name+"&url="+url,true);
+    xmlhttp.send();
+}
+
+function refreshQueue(data){
+    var list = document.getElementById('queueList');
+    while(list.hasChildNodes()){
+        list.removeChild(list.lastChild);
+    }
+    for(var i = 0; i < data.length; i++){
+        var liNode = document.createElement("li");
+        liNode.textContent = (data[i].name + ": " + data[i].score);
+        list.appendChild(liNode);
+    }
+}
+
+function updateVoteCount(num){
+    if (this.textContent === "" || num === null) {
+        console.log("Error Empty Element");
+        return;
+    }
+    //var name = this.textContent.split(";")[0];
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            var data = JSON.parse(xmlhttp.responseText);
+            console.log(data);
+            if(data === "There was an error adding your file to the server"){
+                console.log("Error Occurred");
+            }
+            else{
+                refreshQueue(data);
+            }
+        }
+    };
+    var name = 'name';
+    num = 1;
+    xmlhttp.open("GET","updatevotesong.php?name="+name+"&number="+num,true);
     xmlhttp.send();
 }

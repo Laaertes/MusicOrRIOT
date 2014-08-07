@@ -11,7 +11,17 @@
 		                    </h1>
 		                    <br>
 
-                            <button id="player" class="play" onclick="play()">Play!</button>
+                            <div>
+                                <button id="player" class="play btn btn-primary btn-md" onclick="play()">Play!</button>
+                            </div>
+
+                            <br>
+
+                            <button onclick="sendToDatabase()">SendToDB</button>
+
+                            <br>
+
+                            <button class="play btn btn-primary btn-md" onclick="updateVoteCount()">UpdateVote</button>
 
                             <br>
 
