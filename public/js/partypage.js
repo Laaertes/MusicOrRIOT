@@ -27,7 +27,22 @@ function readTextFile()
 	for (i = 0; i<200; i++) { 
 	    if (subText[i]==="\"name\":")
 	    	{
-	    		alert("Found name! And it is: " + subText[i+1] + " at index: "+i);
+	    		var name1=subText[i+1];
+	    		var name="loudsource";
+	    		//alert("name1[6] is: " + name1[6]);
+	    		
+	    		//*
+	    		//Here is where the parsing happens
+	    		//It goes through every letter of the substring right after "Name": and isolates the name of the song to return
+	    		for (j=1;j<name1.length-2;j++)
+	    			{
+	    				alert("loop " + j);
+	    				alert(name1[j]);
+	    				//name[j-1]=name1[j];
+	    				//alert(name[j-1]);
+	    			}
+	    		//*/
+	    		alert("Found name! And it is: " + name + " at index: "+i);
 	    		answ=1;
 	    	}
 	}
