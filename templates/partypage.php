@@ -21,10 +21,6 @@
 
                             <br>
 
-                            <button class="play btn btn-primary btn-md" onclick="updateVoteCount()">UpdateVote</button>
-
-                            <br>
-
                             <div class="form-group search-bar" align="center">
                                 <div>
                                     <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1">
@@ -49,6 +45,8 @@
 		                            <?php foreach ($songs_by_score_desc as $song): ?>
 		                                <li>
 		                                    <?= $song["name"] ?>: <?= $song["score"] ?>
+		                                    <button onclick="updateVoteCount(<?= $song['id'] ?>, 1);">Up Vote</button>
+		                                    <button onclick="updateVoteCount(<?= $song['id'] ?>, -1);">Down Vote</button>
 		                                </li>
 		                            <?php endforeach ?>
 		                            </strong>

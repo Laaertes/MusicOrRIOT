@@ -12,14 +12,12 @@ require("functions.php");
 session_start();
 
 if (empty($_COOKIE['session_identifier'])) {
-    srand(time());
-    $random_number = rand();
-    $session_identifier = sha1($random_number);
-    insert_or_update("INSERT INTO User (session_identifier) VALUES (?)", $session_identifier);
-    setcookie('session_identifier', $session_identifier, time()+60*60*24*30);
-    $user = query("SELECT * FROM User WHERE session_identifier = ?", $session_identifier);
+    $user = create_user();
 } else {
     $user = query("SELECT * FROM User WHERE session_identifier = ?", $_COOKIE['session_identifier']);
+    if (empty($user)) {
+        $user = create_user();
+    }
 }
 
 ?>

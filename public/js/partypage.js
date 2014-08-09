@@ -15,7 +15,7 @@ function searchMe() {
                     console.error(err);
                 });
 	//test code for now
-	readTextFile();
+	//readTextFile();
 }
 
 function readTextFile()
@@ -37,40 +37,35 @@ function readTextFile()
 	var answ=0;
 	for (i = 0; i<200; i++) { 
 	    if (subText[i]==="\"name\":")
-	    	{
-	    		var name1=subText[i+1];
-	    		var name="loudsource";
-	    		//alert("name1[6] is: " + name1[6]);
-	    		
-	    		//*
-	    		//Here is where the parsing happens
-	    		//It goes through every letter of the substring right after "Name": and isolates the name of the song to return
-	    		for (j=1;j<name1.length-2;j++)
-	    			{
-	    				alert("loop " + j);
-	    				alert(name1[j]);
-	    				//name[j-1]=name1[j];
-	    				//alert(name[j-1]);
-	    			}
-	    		//*/
-	    		alert("Found name! And it is: " + name + " at index: "+i);
-	    		answ=1;
-	    	}
+    	{
+    		var name1=subText[i+1];
+    		var name="loudsource";
+    		//alert("name1[6] is: " + name1[6]);
+    		
+    		//*
+    		//Here is where the parsing happens
+    		//It goes through every letter of the substring right after "Name": and isolates the name of the song to return
+    		for (j=1;j<name1.length-2;j++)
+			{
+				alert("loop " + j);
+				alert(name1[j]);
+				//name[j-1]=name1[j];
+				//alert(name[j-1]);
+			}
+    		//*/
+    		alert("Found name! And it is: " + name + " at index: "+i);
+    		answ=1;
+    	}
 	}
 	
 	
 	if (answ===0)
-		{
-			alert("Did not find name");
-		}
-	
-	
-	
-	
+	{
+		alert("Did not find name");
+	}
 	
 	//Displays result
 	//document.getElementById("displayResult").innerHTML = subText;
-	
 	
 	alert("Finish");
 }
@@ -151,32 +146,37 @@ function refreshQueue(data){
     }
     for(var i = 0; i < data.length; i++){
         var liNode = document.createElement("li");
+        var upvoteNode = document.createElement("button");
+        var downvoteNode = document.createElement("button");
+        
+        upvoteNode.onclick = function(song) { updateVoteCount(song.id, 1) }.bind(undefined, data[i]);
+        upvoteNode.textContent = "Up Vote";
+        downvoteNode.onclick = function(song) { updateVoteCount(song.id, -1) }.bind(undefined, data[i]);
+        downvoteNode.textContent = "Down Vote";
+        
         liNode.textContent = (data[i].name + ": " + data[i].score);
+        liNode.appendChild(upvoteNode);
+        liNode.appendChild(downvoteNode);
         list.appendChild(liNode);
     }
 }
 
-function updateVoteCount(num){
-    if (this.textContent === "" || num === null) {
+function updateVoteCount(id, score){
+    if (id === null || score === null) {
         console.log("Error Empty Element");
         return;
     }
-    //var name = this.textContent.split(";")[0];
-    var xmlhttp=new XMLHttpRequest();
-    xmlhttp.onreadystatechange=function() {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-            var data = JSON.parse(xmlhttp.responseText);
-            console.log(data);
-            if(data === "There was an error adding your file to the server"){
-                console.log("Error Occurred");
-            }
-            else{
-                refreshQueue(data);
-            }
+    
+    reqwest({
+        url: 'updatevotesong.php',
+        method: 'post',
+        type: 'json',
+        data: { id: id, score: score },
+        success: function(resp) {
+            refreshQueue(resp);
+        },
+        error: function(error) {
+            console.log("Error Occurred: " + error);
         }
-    };
-    var name = 'name';
-    num = 1;
-    xmlhttp.open("GET","updatevotesong.php?name="+name+"&number="+num,true);
-    xmlhttp.send();
+    });
 }

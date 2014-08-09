@@ -1,53 +1,42 @@
 <?php
     // configuration
-    require("../src/functions.php");
-
-    if (empty($_COOKIE['session_identifier'])) {
-        srand(time());
-        $random_number = rand();
-        $session_identifier = sha1($random_number);
-        insert_or_update("INSERT INTO User (session_identifier) VALUES (?)", $session_identifier);
-        setcookie('session_identifier', $session_identifier, time()+60*60*24*30);
-        $user = query("SELECT * FROM User WHERE session_identifier = ?", $session_identifier);
-    } else {
-        $user = query("SELECT * FROM User WHERE session_identifier = ?", $_COOKIE['session_identifier']);
-    }
+    require("../src/config.php");
 
     $party = query("SELECT * FROM Party WHERE id = ?", $user['party_id']);
 
     // if form was submitted
-    if ($_SERVER["REQUEST_METHOD"] == "GET")
+    if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $name = ($_GET['name']);
-        $number = intval($_GET['number']);
+        $id = $_POST['id'];
+        $score = intval($_POST['score']);
         //check if the song is already in the queue
-        $song = query("SELECT * FROM Song WHERE name = ? AND party_id = ?", $name, $user["party_id"]);
-        //check if it has been voted on
-        $check = query("SELECT * FROM SongVotes WHERE song_id = ?", $song['id']);
-        //If the song exists update the number count
-        if($check) {
-            $complete = insert_or_update("UPDATE SongVotes Set score = ? WHERE id = ?", ($check['score'] + $number), $check['id']);
-            //check if the song was correctly inserted
-            if($complete === false || $complete === 0){
-                echo json_encode($number);
+        $song = query("SELECT * FROM Song WHERE id = ? AND party_id = ?", $id, $party['id']);
+        if ($song) {
+            //check if it has been voted on
+            $check = query("SELECT * FROM SongVotes WHERE song_id = ? AND user_id = ?", $song['id'], $user['id']);
+            //If the song exists update the number count
+            if($check) {
+                $complete = insert_or_update("UPDATE SongVotes Set score = ? WHERE id = ?", $score, $check['id']);
+                //check if the song was correctly inserted
+                if($complete) {
+                    $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+                    echo json_encode($songs_by_score_desc);
+                    exit;
+                }
             }
-            else{
-                $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
-                echo json_encode($songs_by_score_desc);
-            }
-        }
-        //If the song does not exist add it to the song vote table
-        else {
-            $complete = insert_or_update("INSERT INTO SongVotes (user_id, song_id, score) VALUES(?, ?, ?)", $user['id'], $song['id'], $number);
-            //check if the song was correctly inserted
-            if($complete === false || $complete === 0){
-                $error = "There was an error adding your file to the server";
-                echo json_encode($number);
-            }
-            else{
-                $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
-                echo json_encode($songs_by_score_desc);
+            //If the song does not exist add it to the song vote table
+            else {
+                $complete = insert_or_update("INSERT INTO SongVotes (user_id, song_id, score) VALUES(?, ?, ?)", $user['id'], $song['id'], $score);
+                //check if the song was correctly inserted
+                if($complete) {
+                    $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+                    echo json_encode($songs_by_score_desc);
+                    exit;
+                }
             }
         }
+        http_response_code(400);
+        $error = "There was an error updating the score";
+        echo json_encode($error);
     }
 ?>

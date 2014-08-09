@@ -221,4 +221,15 @@ function render($template, $values = [])
     }
 }
 
+function create_user () 
+{
+    srand(time());
+    $random_number = rand();
+    $session_identifier = sha1($random_number);
+    insert_or_update("INSERT INTO User (session_identifier) VALUES (?)", $session_identifier);
+    setcookie('session_identifier', $session_identifier, time()+60*60*24*30);
+    return query("SELECT * FROM User WHERE session_identifier = ?", $session_identifier);
+}
+
+
 ?>
