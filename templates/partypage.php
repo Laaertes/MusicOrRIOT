@@ -31,6 +31,19 @@
                                 </div>
                             </div>
 		                    
+		                    <!-- Search Results Here -->
+							<div>
+								<ol>
+									<li id="searchResults">
+										<div id="name">placeholdername</div>
+										<div id="artist">placeholderartist</div>
+										<div id="album">placeholderalbum</div>
+										<!-- div id="songLength">placeholdersongLength</div>  -->
+									</li>
+									<br>
+								</ol>									
+							</div>
+		                    
 		                    <p id="displayResult"></p>
 		                    
 		                    <br>
