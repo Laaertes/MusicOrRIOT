@@ -35,9 +35,37 @@
 							<div>
 								<ol>
 									<li id="searchResults">
-										<div id="name">placeholdername</div>
-										<div id="artist">placeholderartist</div>
-										<div id="album">placeholderalbum</div>
+										<div id="name"></div>
+										<div id="artist"></div>
+										<div id="album"></div>
+										<!-- div id="songLength">placeholdersongLength</div>  -->
+									</li>
+									<br>
+									<li id="searchResults2">
+										<div id="name2"></div>
+										<div id="artist2"></div>
+										<div id="album2"></div>
+										<!-- div id="songLength">placeholdersongLength</div>  -->
+									</li>
+									<br>
+									<li id="searchResults3">
+										<div id="name3"></div>
+										<div id="artist3"></div>
+										<div id="album3"></div>
+										<!-- div id="songLength">placeholdersongLength</div>  -->
+									</li>
+									<br>
+									<li id="searchResults4">
+										<div id="name4"></div>
+										<div id="artist4"></div>
+										<div id="album4"></div>
+										<!-- div id="songLength">placeholdersongLength</div>  -->
+									</li>
+									<br>
+									<li id="searchResults5">
+										<div id="name5"></div>
+										<div id="artist5"></div>
+										<div id="album5"></div>
 										<!-- div id="songLength">placeholdersongLength</div>  -->
 									</li>
 									<br>
