@@ -97,6 +97,10 @@ function addSong(name, url){
         type: 'json',
         data: { name: name, url: url },
         success: function(resp) {
+            var list = document.getElementById('searchList');
+            while(list.hasChildNodes()){
+                list.removeChild(list.lastChild);
+            }
             refreshQueue(resp);
         },
         error: function(error) {
