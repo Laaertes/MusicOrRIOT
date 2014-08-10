@@ -32,7 +32,7 @@ function search(data) {
 	    
 	    addSongButton.onclick = function(song) { addSong(song.loudsourceName, song.preview_url) }.bind(undefined, d[i]);
         addSongButton.textContent = "Add";
-        addSongButton.addClass( "btn btn-primary btn-sm" );
+        addSongButton.className += ' btn btn-primary btn-sm';
 	    
 	    liNode.textContent = d[i].loudsourceName;
 	    liNode.appendChild(addSongButton);
