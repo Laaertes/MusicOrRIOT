@@ -9,7 +9,7 @@ function searchMe() {
                     console.log('Found: ', data);
                     //Sort through and display the data with a function call here
                     search(data);
-                    playSong(data.tracks.items[0].preview_url);
+                    //playSong(data.tracks.items[0].preview_url);
                 }, function(err) {
                     //Handle an API search error
                     console.error(err);
@@ -26,7 +26,15 @@ function search(data) {
 	var length = Math.min(5, d.length);
 	for (var i=0; i<length; i++) {
 	    var liNode = document.createElement("li");
-	    liNode.textContent = d[i].name + " - " + d[i].artists[0].name + " - " + d[i].album.name;
+	    var addSongButton = document.createElement("button");
+	    
+	    d[i].loudsourceName = d[i].name + " - " + d[i].artists[0].name + " - " + d[i].album.name;
+	    
+	    addSongButton.onclick = function(song) { addSong(song.loudsourceName, song.preview_url) }.bind(undefined, d[i]);
+        addSongButton.textContent = "Add";
+	    
+	    liNode.textContent = d[i].loudsourceName;
+	    liNode.appendChild(addSongButton);
 	    list.appendChild(liNode);
 	}
 }
@@ -77,28 +85,23 @@ function loaded() {
 }
 
 //add song to database on click
-function sendToDatabase(name, url){
+function addSong(name, url){
     if (url=="" || name=="") {
         console.log("Error in element values");
         return;
     }
-    var xmlhttp=new XMLHttpRequest();
-    xmlhttp.onreadystatechange=function() {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-            var data = JSON.parse(xmlhttp.responseText);
-            console.log(data);
-            if(data === "Song Exists" || data === "There was an error adding your file to the server"){
-                console.log("Error Occurred");
-            }
-            else{
-                refreshQueue(data);
-            }
+    reqwest({
+        url: 'uploadsong.php',
+        method: 'post',
+        type: 'json',
+        data: { name: name, url: url },
+        success: function(resp) {
+            refreshQueue(resp);
+        },
+        error: function(error) {
+            console.log("Error Occurred: " + error.responseText);
         }
-    };
-    name = "name";
-    url = "https://p.scdn.co/mp3-preview/856be864790a7e2136743a8ac5c368478fcbcac0";
-    xmlhttp.open("GET","uploadsong.php?name="+name+"&url="+url,true);
-    xmlhttp.send();
+    });
 }
 
 function refreshQueue(data){

@@ -15,12 +15,6 @@
                                 <button id="player" class="play btn btn-primary btn-md" onclick="play()">Play!</button>
                             </div>
 
-                            <br>
-
-                            <button onclick="sendToDatabase()">SendToDB</button>
-
-                            <br>
-
                             <div class="form-group search-bar" align="center">
                                 <div>
                                     <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1">
