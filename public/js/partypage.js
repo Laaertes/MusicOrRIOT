@@ -18,30 +18,17 @@ function searchMe() {
 
 //Displays search results
 function search(data) {
-	alert("Attempting to display search results...");
-	
-	document.getElementById("name").innerHTML=data.tracks.items[0].name;
-	document.getElementById("artist").innerHTML=data.tracks.items[0].artists[0].name;
-	document.getElementById("album").innerHTML=data.tracks.items[0].album.name;
-	
-	document.getElementById("name2").innerHTML=data.tracks.items[1].name;
-	document.getElementById("artist2").innerHTML=data.tracks.items[1].artists[0].name;
-	document.getElementById("album2").innerHTML=data.tracks.items[1].album.name;
-	
-	document.getElementById("name3").innerHTML=data.tracks.items[2].name;
-	document.getElementById("artist3").innerHTML=data.tracks.items[2].artists[0].name;
-	document.getElementById("album3").innerHTML=data.tracks.items[2].album.name;
-	
-	document.getElementById("name4").innerHTML=data.tracks.items[3].name;
-	document.getElementById("artist4").innerHTML=data.tracks.items[3].artists[0].name;
-	document.getElementById("album4").innerHTML=data.tracks.items[3].album.name;
-	
-	document.getElementById("name5").innerHTML=data.tracks.items[4].name;
-	document.getElementById("artist5").innerHTML=data.tracks.items[4].artists[0].name;
-	document.getElementById("album5").innerHTML=data.tracks.items[4].album.name;
-	
-	//alert(data.tracks.items[0].name);
-	//alert(data.tracks.items[0].artist);
+    var d = data.tracks.items;
+    var list = document.getElementById('searchList');
+    while(list.hasChildNodes()){
+        list.removeChild(list.lastChild);
+    }
+	var length = Math.min(5, d.length);
+	for (var i=0; i<length; i++) {
+	    var liNode = document.createElement("li");
+	    liNode.textContent = d[i].name + " - " + d[i].artists[0].name + " - " + d[i].album.name;
+	    list.appendChild(liNode);
+	}
 }
 
 //Prepares the audioObject to play the a song
