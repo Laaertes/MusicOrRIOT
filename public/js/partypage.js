@@ -27,20 +27,25 @@ function displaySearch(data) {
     }
 	var length = Math.min(5, d.length);
 	for (var i=0; i<length; i++) {
-	    var liNode = document.createElement("li");
-        var innerDiv = document.createElement("div");
-	    var addSongButton = document.createElement("button");
-	    
-	    d[i].loudsourceName = d[i].name + " - " + d[i].artists[0].name + " - " + d[i].album.name;
-	    
-	    addSongButton.onclick = function(song) { addSong(song.loudsourceName, song.preview_url) }.bind(undefined, d[i]);
-        addSongButton.textContent = "Add";
-        addSongButton.className += ' btn btn-primary btn-sm';
-	    
-	    liNode.textContent = d[i].loudsourceName;
-	    innerDiv.appendChild(addSongButton);
-        liNode.appendChild(innerDiv);
-	    list.appendChild(liNode);
+	    if (d[i].preview_url === "") {
+            length = length + 1;
+        }
+        else {
+            var liNode = document.createElement("li");
+            var innerDiv = document.createElement("div");
+            var addSongButton = document.createElement("button");
+
+            d[i].loudsourceName = d[i].name + " - " + d[i].artists[0].name + " - " + d[i].album.name;
+
+            addSongButton.onclick = function(song) { addSong(song.loudsourceName, song.preview_url) }.bind(undefined, d[i]);
+            addSongButton.textContent = "Add";
+            addSongButton.className += ' btn btn-primary btn-sm';
+
+            liNode.textContent = d[i].loudsourceName;
+            innerDiv.appendChild(addSongButton);
+            liNode.appendChild(innerDiv);
+            list.appendChild(liNode);
+        }
 	}
 }
 
