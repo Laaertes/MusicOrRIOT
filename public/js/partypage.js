@@ -42,6 +42,13 @@ function search(data) {
 	}
 }
 
+//waits for enter key in text box then searches without refreshing page
+function checkKey(){
+	if(event.keyCode==13) {
+		searchMe();
+		}
+}
+
 //Prepares the audioObject to play the a song
 var audioObject;
 function playSong(url, id){
