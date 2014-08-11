@@ -10,6 +10,6 @@
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>LoudSource</h1>
+            <h1><a href="/MusicMelee/public/">LoudSource</a></h1>
         </div>
     </div>

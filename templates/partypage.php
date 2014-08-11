@@ -22,16 +22,19 @@
                                     <?= $current_song["name"] ?>: <?= $current_song["score"] ?>
                                 </div>
                             <?php endif ?>
-
-                            <div class="form-group search-bar" align="center">
-                                <div>
-                                    <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1">
-                                </div>
-                                <br>
-                                <div>
-                                    <button onclick="searchMe()" class="btn btn-primary btn-md">Search</button>
-                                </div>
-                            </div>
+							
+							<fieldset>
+	                            <div class="form-group search-bar" align="center">
+	                                <div>
+	                                    <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1" onkeydown="checkKey()">
+	                                </div>
+	                                <br>
+	                                <div>
+	                                    <button onclick="searchMe()" class="btn btn-primary btn-md">Search</button>
+	                                </div>
+	                            </div>
+	                        </fieldset>
+                            
 		                    
 		                    <!-- Search Results Here -->
 							<div>
