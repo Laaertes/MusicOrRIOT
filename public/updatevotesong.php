@@ -16,7 +16,12 @@
             $check = query("SELECT * FROM SongVotes WHERE song_id = ? AND user_id = ?", $song['id'], $user['id']);
             //If the song exists update the number count
             if($check) {
-                $complete = insert_or_update("UPDATE SongVotes Set score = ? WHERE id = ?", $score, $check['id']);
+                if ($check['score'] == $score) {
+                    $complete = insert_or_update("UPDATE SongVotes Set score = 0 WHERE id = ?", $check['id']);
+                }
+                else {
+                    $complete = insert_or_update("UPDATE SongVotes Set score = ? WHERE id = ?", $score, $check['id']);
+                }
                 //check if the song was correctly inserted
                 if($complete) {
                     $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
