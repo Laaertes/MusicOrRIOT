@@ -12,7 +12,7 @@
         //check if the song is already in the queue
         $check = query("SELECT * FROM Song WHERE name = ? AND party_id = ?", $name, $party["id"]);
         if($check) {
-            $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+            $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC,id ASC", $party['id']);
             echo json_encode($songs_by_score_desc);
         }
         else {
@@ -24,7 +24,7 @@
                 echo json_encode($error);
             }
             else{
-                $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+                $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC,id ASC", $party['id']);
                 echo json_encode($songs_by_score_desc);
             }
         }

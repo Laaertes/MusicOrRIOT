@@ -24,7 +24,7 @@
                 }
                 //check if the song was correctly inserted
                 if($complete) {
-                    $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+                    $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC,id ASC", $party['id']);
                     echo json_encode($songs_by_score_desc);
                     exit;
                 }
@@ -34,7 +34,7 @@
                 $complete = insert_or_update("INSERT INTO SongVotes (user_id, song_id, score) VALUES(?, ?, ?)", $user['id'], $song['id'], $score);
                 //check if the song was correctly inserted
                 if($complete) {
-                    $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+                    $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC,id ASC", $party['id']);
                     echo json_encode($songs_by_score_desc);
                     exit;
                 }
