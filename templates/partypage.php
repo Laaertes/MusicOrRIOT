@@ -27,7 +27,7 @@
 	                                </div>
 	                                <br>
 	                                <div>
-	                                    <button onclick="searchMe()" class="btn btn-primary btn-md">Search</button>
+	                                    <button onclick="searchSpotify()" class="btn btn-primary btn-md">Search</button>
 	                                </div>
 	                            </div>
 	                        </fieldset>
