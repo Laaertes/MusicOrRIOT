@@ -27,11 +27,14 @@ body{
 .jumbotron h1{
   color: #fff;
   text-align: center;
-  font-size: 50px;
+  font-size: 110px;
+  font-family: 'LilyUPC', serif;
+  font-style: ;
+  text-shadow: 5px 8px 5px #000;
 }
 
 .jumbotron a{
-  color: #fff;
+  color:white;
 }
 
 .buttons h3{
