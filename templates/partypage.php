@@ -23,7 +23,7 @@
 							<fieldset>
 	                            <div class="form-group search-bar" align="center">
 	                                <div>
-	                                    <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1" onkeydown="checkKey()" autocomplete="off">
+	                                    <input class="form-control" type="search" placeholder="Search for Track" id="searchbox1" name="searchbox1" onkeydown="checkKey()" autocomplete="off">
 	                                </div>
 	                                <br>
 	                                <div>
