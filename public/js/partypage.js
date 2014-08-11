@@ -44,25 +44,33 @@ function search(data) {
 
 //Prepares the audioObject to play the a song
 var audioObject;
-function playSong(url){
+function playSong(url, id){
     audioObject = new Audio(url);
     var that = audioObject;
     audioObject.addEventListener('ended', function() {
-        var queueList = document.getElementById("queueList");
-        if (queueList.hasChildNodes()){
-            var next = queueList.firstChild.preview_url;
-            that.src = ("https://p.scdn.co/mp3-preview/6c43a340ad55f6961354bfa3b24499058dff1cb6");
-            that.load();
-            that.play();
-        }
+        reqwest({
+            url: 'removefromqueue.php',
+            method: 'post',
+            type: 'json',
+            data: { id: id },
+            success: function(resp) {
+                refreshQueue(resp);
+                playSong(resp[0].url, resp[0].id);
+                audioObject.play();
+            },
+            error: function(error) {
+                console.log("Error Occurred: " + error.responseText);
+            }
+        });
     });
     audioObject.addEventListener('pause', function() {
         //target.classList.remove(playingCssClass);
     });
+    audioObject.load();
 }
 
 var playing = false;
-function play(data){
+function play(){
     var player = document.getElementById("player");
     if(!playing){
         audioObject.play();
@@ -84,6 +92,7 @@ function loaded() {
         type: 'json',
         success: function(resp) {
             refreshQueue(resp);
+            playSong(resp[0].url, resp[0].id);
         },
         error: function(error) {
             console.log("Error Occurred: " + error.responseText);
