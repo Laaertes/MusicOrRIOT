@@ -72,9 +72,17 @@ function playSong(url, id){
             type: 'json',
             data: { id: id },
             success: function(resp) {
-                refreshQueue(resp);
-                playSong(resp[0].url, resp[0].id);
-                audioObject.play();
+                if(resp.length === 0){
+                    refreshQueue(resp);
+                    currentSong.textContent = "";
+                    player.textContent = "Play!";
+                    playing = false;
+                }
+                else{
+                    refreshQueue(resp);
+                    playSong(resp[0].url, resp[0].id);
+                    audioObject.play();
+                }
             },
             error: function(error) {
                 console.log("Error Occurred: " + error.responseText);
@@ -96,9 +104,11 @@ var playing = false;
 function play(){
     var player = document.getElementById("player");
     if(!playing){
-        audioObject.play();
-        player.textContent = "Pause!";
-        playing = true;
+        if(document.getElementById('currentSong').textContent !== ""){
+            audioObject.play();
+            player.textContent = "Pause!";
+            playing = true;
+        }
     }
     else {
         player.textContent = "Play!";
@@ -118,7 +128,9 @@ function loaded() {
         type: 'json',
         success: function(resp) {
             refreshQueue(resp);
-            playSong(resp[0].url, resp[0].id);
+            if(resp[0] !== undefined){
+                playSong(resp[0].url, resp[0].id);
+            }
         },
         error: function(error) {
             console.log("Error Occurred: " + error.responseText);
@@ -147,6 +159,7 @@ function addSong(name, url){
                 list.removeChild(list.lastChild);
             }
             refreshQueue(resp);
+            playSong(resp[0].url, resp[0].id);
         },
         error: function(error) {
             console.log("Error Occurred: " + error.responseText);
