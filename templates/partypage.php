@@ -12,17 +12,14 @@
 		                    <br>
 
                             <?php if ($admin): ?>
-                                <div  >
+                                <div class="player">
                                     <button id="player" class="play btn btn-primary btn-md" onclick="play()">Play!</button>
                                 </div>
+                                <br>
                             <?php endif ?>
 
-                            <?php if ($current_song): ?>
-                                <div>
-                                    <?= $current_song["name"] ?>: <?= $current_song["score"] ?>
-                                </div>
-                            <?php endif ?>
-							
+                            <strong><div id="currentSong" class="player"></div></strong>
+							<br>
 							<fieldset>
 	                            <div class="form-group search-bar" align="center">
 	                                <div>
