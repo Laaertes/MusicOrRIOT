@@ -75,14 +75,6 @@ function play(data){
 }
 //start playing on page load?
 function loaded() {
-    var queueList = document.getElementById("queueList");
-    if (queueList.hasChildNodes()){
-        playSong("https://p.scdn.co/mp3-preview/856be864790a7e2136743a8ac5c368478fcbcac0");
-        play();
-    }
-    else {
-        console.log("AH!");
-    }
 }
 
 //add song to database on click
