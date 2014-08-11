@@ -26,6 +26,7 @@ function search(data) {
 	var length = Math.min(5, d.length);
 	for (var i=0; i<length; i++) {
 	    var liNode = document.createElement("li");
+        var innerDiv = document.createElement("div");
 	    var addSongButton = document.createElement("button");
 	    
 	    d[i].loudsourceName = d[i].name + " - " + d[i].artists[0].name + " - " + d[i].album.name;
@@ -35,7 +36,8 @@ function search(data) {
         addSongButton.className += ' btn btn-primary btn-sm';
 	    
 	    liNode.textContent = d[i].loudsourceName;
-	    liNode.appendChild(addSongButton);
+	    innerDiv.appendChild(addSongButton);
+        liNode.appendChild(innerDiv);
 	    list.appendChild(liNode);
 	}
 }
@@ -75,6 +77,18 @@ function play(data){
 }
 //start playing on page load?
 function loaded() {
+    //this loads the current que from the database
+    reqwest({
+        url: 'partypageinfo.php',
+        method: 'get',
+        type: 'json',
+        success: function(resp) {
+            refreshQueue(resp);
+        },
+        error: function(error) {
+            console.log("Error Occurred: " + error.responseText);
+        }
+    });
 }
 
 //add song to database on click

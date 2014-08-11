@@ -11,9 +11,17 @@
 		                    </h1>
 		                    <br>
 
-                            <div>
-                                <button id="player" class="play btn btn-primary btn-md" onclick="play()">Play!</button>
-                            </div>
+                            <?php if ($admin): ?>
+                                <div  >
+                                    <button id="player" class="play btn btn-primary btn-md" onclick="play()">Play!</button>
+                                </div>
+                            <?php endif ?>
+
+                            <?php if ($current_song): ?>
+                                <div>
+                                    <?= $current_song["name"] ?>: <?= $current_song["score"] ?>
+                                </div>
+                            <?php endif ?>
 
                             <div class="form-group search-bar" align="center">
                                 <div>
@@ -42,18 +50,11 @@
 		                    <div>
 		                        <strong>
 		                            <ol id="queueList" class="list">
-		                            <?php foreach ($songs_by_score_desc as $song): ?>
-		                                <li>
-		                                	<div>
-			                                    <?= $song["name"] ?>: <?= $song["score"] ?>
-			                                    <button class="btn btn-primary btn-sm" onclick="updateVoteCount(<?= $song['id'] ?>, 1);">Up Vote</button>
-			                                    <button class="btn btn-primary btn-sm" onclick="updateVoteCount(<?= $song['id'] ?>, -1);">Down Vote</button>
-			                                </div>
-		                                </li>
-		                            <?php endforeach ?>
 		                            </ol>
 		                        </strong>
 		                    </div>
+                            <br>
+                            <br>
 		                </div>
 		            </div>
 		        </div>
