@@ -25,7 +25,23 @@
             }
             else{
                 $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC,id ASC", $party['id']);
-                echo json_encode($songs_by_score_desc);
+                //check if there is no current song yet
+                if($party['current_song_id'] == null){
+                    $check_current_song = query("SELECT * FROM Song WHERE name = ? AND party_id = ?", $name, $party["id"]);
+                    insert_or_update("UPDATE Party Set current_song_id = ? WHERE id=?",  $check_current_song['id'], $party["id"]);
+                    echo json_encode($songs_by_score_desc);
+                }
+                else {
+                    $size = sizeof($songs_by_score_desc);
+                    for($i = 0; $i < $size; $i++){
+                        if($songs_by_score_desc[$i]['id'] == $party['current_song_id']){
+                            $tmp = $songs_by_score_desc[0];
+                            $songs_by_score_desc[0] = $songs_by_score_desc[$i];
+                            $songs_by_score_desc[$i] = $tmp;
+                        }
+                    }
+                    echo json_encode($songs_by_score_desc);
+                }
             }
         }
     }
