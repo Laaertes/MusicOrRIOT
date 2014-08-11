@@ -44,9 +44,11 @@
 		                            <ol id="queueList" class="list">
 		                            <?php foreach ($songs_by_score_desc as $song): ?>
 		                                <li>
-		                                    <?= $song["name"] ?>: <?= $song["score"] ?>
-		                                    <button onclick="updateVoteCount(<?= $song['id'] ?>, 1);">Up Vote</button>
-		                                    <button onclick="updateVoteCount(<?= $song['id'] ?>, -1);">Down Vote</button>
+		                                	<div>
+			                                    <?= $song["name"] ?>: <?= $song["score"] ?>
+			                                    <button class="btn btn-primary btn-sm" onclick="updateVoteCount(<?= $song['id'] ?>, 1);">Up Vote</button>
+			                                    <button class="btn btn-primary btn-sm" onclick="updateVoteCount(<?= $song['id'] ?>, -1);">Down Vote</button>
+			                                </div>
 		                                </li>
 		                            <?php endforeach ?>
 		                            </ol>

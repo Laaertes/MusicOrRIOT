@@ -110,15 +110,19 @@ function refreshQueue(data){
         var liNode = document.createElement("li");
         var upvoteNode = document.createElement("button");
         var downvoteNode = document.createElement("button");
+        var outerDiv = document.createElement("div");
         
         upvoteNode.onclick = function(song) { updateVoteCount(song.id, 1) }.bind(undefined, data[i]);
         upvoteNode.textContent = "Up Vote";
+        upvoteNode.className += ' btn btn-primary btn-sm';
         downvoteNode.onclick = function(song) { updateVoteCount(song.id, -1) }.bind(undefined, data[i]);
         downvoteNode.textContent = "Down Vote";
+        downvoteNode.className += ' btn btn-primary btn-sm';
         
         liNode.textContent = (data[i].name + ": " + data[i].score);
-        liNode.appendChild(upvoteNode);
-        liNode.appendChild(downvoteNode);
+        outerDiv.appendChild(upvoteNode);
+        outerDiv.appendChild(downvoteNode);
+        liNode.appendChild(outerDiv);
         list.appendChild(liNode);
     }
 }
