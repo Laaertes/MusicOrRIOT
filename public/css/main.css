@@ -20,21 +20,31 @@ body{
 }
 
 .jumbotron{
-  background-color: #5a5a5a;
-  padding: 30px;
+  background-color: white;
+  background-image: url("../image/crowd2.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100%;
+  padding: 0px;
 }
 
 .jumbotron h1{
+  /*
   color: #fff;
   text-align: center;
   font-size: 110px;
   font-family: 'LilyUPC', serif;
-  font-style: ;
   text-shadow: 5px 8px 5px #000;
+  */
 }
 
 .jumbotron a{
   color:white;
+}
+
+.head {
+	margin-left: 25%;
+    width: 50%;
 }
 
 .buttons h3{
@@ -56,7 +66,7 @@ body{
 }
 
 .btn-primary:hover{
-  background-color: #E3F15E;
+  background-color: #005180;
   border-color: #5a5a5a;
 }
 

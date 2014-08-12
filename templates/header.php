@@ -10,7 +10,10 @@
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1 align="center" class="head"><a href="http://104.131.231.237/">LoudSource</a></h1>
+        	<a href="http://104.131.231.237/">
+        		<img class="head" src="image/LoudSourceTitle.png" alt="" height="" width="">
+        	</a>
+            <!-- h1 align="center" class="head"><a href="http://104.131.231.237/">LoudSource</a></h1>  -->
         </div>
     </div>
 </body>
