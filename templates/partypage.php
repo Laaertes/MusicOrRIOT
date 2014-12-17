@@ -12,26 +12,26 @@
 		                    <br>
 
                             <?php if ($admin): ?>
-                                <div class="player">
+                                <div  >
                                     <button id="player" class="play btn btn-primary btn-md" onclick="play()">Play!</button>
                                 </div>
-                                <br>
                             <?php endif ?>
 
-                            <strong><div id="currentSong" class="player"></div></strong>
-							<br>
-							<fieldset>
-	                            <div class="form-group search-bar" align="center">
-	                                <div>
-	                                    <input class="form-control" type="search" placeholder="Search for Track" id="searchbox1" name="searchbox1" onkeydown="checkKey()" autocomplete="off">
-	                                </div>
-	                                <br>
-	                                <div>
-	                                    <button onclick="searchSpotify()" class="btn btn-primary btn-md">Search</button>
-	                                </div>
-	                            </div>
-	                        </fieldset>
-                            
+                            <?php if ($current_song): ?>
+                                <div>
+                                    <?= $current_song["name"] ?>: <?= $current_song["score"] ?>
+                                </div>
+                            <?php endif ?>
+
+                            <div class="form-group search-bar" align="center">
+                                <div>
+                                    <input class="form-control" type="text" placeholder="Search for Track" id="searchbox1" name="searchbox1">
+                                </div>
+                                <br>
+                                <div>
+                                    <button onclick="searchMe()" class="btn btn-primary btn-md">Search</button>
+                                </div>
+                            </div>
 		                    
 		                    <!-- Search Results Here -->
 							<div>

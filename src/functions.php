@@ -114,7 +114,7 @@ function insert_or_update(/* $sql [, ... ] */)
 {
     // SQL statement
     $args = func_get_args();
-
+    
     $statement = call_user_func_array('base_query', $args);
     if ($statement !== false) {
         return $statement->rowCount();
@@ -129,7 +129,7 @@ function query(/* $sql [, ... ] */)
 {
     // SQL statement
     $args = func_get_args();
-
+    
     $statement = call_user_func_array('base_query', $args);
     if ($statement !== false) {
         return $statement->fetch(PDO::FETCH_ASSOC);
@@ -144,7 +144,7 @@ function query_all(/* $sql [, ... ] */)
 {
     // SQL statement
     $args = func_get_args();
-
+    
     $statement = call_user_func_array('base_query', $args);
 
     if ($statement) {
@@ -221,7 +221,7 @@ function render($template, $values = [])
     }
 }
 
-function create_user ()
+function create_user () 
 {
     srand(time());
     $random_number = rand();
@@ -231,23 +231,5 @@ function create_user ()
     return query("SELECT * FROM User WHERE session_identifier = ?", $session_identifier);
 }
 
-function songs_by_score_desc ($party_id)
-{
-    return query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC,id ASC", $party_id);
-}
-
-function order_queue ($songs_by_score_desc, $current_song_id) {
-    $size = sizeof($songs_by_score_desc);
-    $tmp = array();
-    for($i = 0; $i < $size; $i++){
-        if($songs_by_score_desc[$i]['id'] == $current_song_id){
-            array_unshift($tmp, $songs_by_score_desc[$i]);
-        }
-        else {
-            $tmp[] = $songs_by_score_desc[$i];
-        }
-    }
-    return $tmp;
-}
 
 ?>

@@ -10,13 +10,13 @@
         $name = $_POST['name'];
         $url = $_POST['url'];
         //check if the song is already in the queue
-        $check = query("SELECT * FROM Song WHERE name = ? AND party_id = ?", $name, $party['id']);
+        $check = query("SELECT * FROM Song WHERE name = ? AND party_id = ?", $name, $party["id"]);
         if($check) {
-            $songs_by_score_desc = songs_by_score_desc($party['id']);
+            $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
             echo json_encode($songs_by_score_desc);
         }
         else {
-            $complete = insert_or_update("INSERT INTO Song (name, url, party_id) VALUES(?, ?, ?)", $name, $url, $party['id']);
+            $complete = insert_or_update("INSERT INTO Song (name, url, party_id) VALUES(?, ?, ?)", $name, $url, $party["id"]);
             //check if the song was correctly inserted
             if($complete === false || $complete === 0){
                 http_response_code(400);
@@ -24,16 +24,8 @@
                 echo json_encode($error);
             }
             else{
-                $songs_by_score_desc = songs_by_score_desc($party['id']);
-                //check if there is no current song yet
-                if($party['current_song_id'] == null) {
-                    insert_or_update("UPDATE Party Set current_song_id = ? WHERE id=?",  $songs_by_score_desc[0]['id'], $party['id']);
-                    echo json_encode($songs_by_score_desc);
-                }
-                else {
-                    $songs_by_score_desc = order_queue($songs_by_score_desc, $party['current_song_id']);
-                    echo json_encode($songs_by_score_desc);
-                }
+                $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+                echo json_encode($songs_by_score_desc);
             }
         }
     }

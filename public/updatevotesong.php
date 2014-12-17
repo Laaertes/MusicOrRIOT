@@ -24,16 +24,9 @@
                 }
                 //check if the song was correctly inserted
                 if($complete) {
-                    $songs_by_score_desc = songs_by_score_desc($party['id']);
-                    if($songs_by_score_desc[0]['id'] == $party['current_song_id']){
-                        echo json_encode($songs_by_score_desc);
-                        exit;
-                    }
-                    else{
-                        $songs_by_score_desc = order_queue($songs_by_score_desc, $party['current_song_id']);
-                        echo json_encode($songs_by_score_desc);
-                        exit;
-                    }
+                    $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+                    echo json_encode($songs_by_score_desc);
+                    exit;
                 }
             }
             //If the song does not exist add it to the song vote table
@@ -41,16 +34,9 @@
                 $complete = insert_or_update("INSERT INTO SongVotes (user_id, song_id, score) VALUES(?, ?, ?)", $user['id'], $song['id'], $score);
                 //check if the song was correctly inserted
                 if($complete) {
-                    $songs_by_score_desc = songs_by_score_desc($party['id']);
-                    if($songs_by_score_desc[0]['id'] == $party['current_song_id']){
-                        echo json_encode($songs_by_score_desc);
-                        exit;
-                    }
-                    else{
-                        $songs_by_score_desc = order_queue($songs_by_score_desc, $party['current_song_id']);
-                        echo json_encode($songs_by_score_desc);
-                        exit;
-                    }
+                    $songs_by_score_desc = query_all("SELECT s.*, ifnull(sum(v.score), 0) as score FROM Song s LEFT JOIN SongVotes v ON s.id = v.song_id WHERE s.party_id = ? GROUP BY s.id ORDER BY score DESC", $party['id']);
+                    echo json_encode($songs_by_score_desc);
+                    exit;
                 }
             }
         }
