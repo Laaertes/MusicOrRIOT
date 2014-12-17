@@ -1,4 +1,5 @@
-<?php
+
+    <?php
     // configuration
     require("../src/config.php");
     

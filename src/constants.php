@@ -9,13 +9,13 @@
  */
 
 // your database's name
-define("DATABASE", "Loudsource");
+define("DATABASE", "MusicOrRIOT");
 
 // your database's password
-define("PASSWORD", "weightforscotch");
+define("PASSWORD", "purpleponies");
 
 // your database's server
-define("SERVER", "104.131.231.237");
+define("SERVER", "localhost");
 
 // your database's username
 define("USERNAME", "root");
